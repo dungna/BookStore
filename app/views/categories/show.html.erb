@@ -1,0 +1,60 @@
+<!--  LANDING IMAGE  -->
+<div id="landing-img" class="container"></div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+
+  <!--  SIDE BAR  -->
+  <div class="sidebar">
+    <!-- Best sellers -->
+    <div class="box-title box-content">
+      Best Sellers
+    </div>
+
+    <div class="sidebar-list" id="lp-best-sellers">
+    </div>
+
+    <!-- Best sellers -->
+    <div class="box-title box-content">
+      Books of Author Name
+    </div>
+
+    <div class="sidebar-list" id="bs-same-author-books">
+    </div>
+  </div>
+
+  <!--  MAIN CONTENT  -->
+  <div id="landing-products">
+    <div class="box-title box-content">
+      Categories
+    </div>
+
+    <div class="products-list">
+      <!--CATEGORY INFO-->
+        <ul style="margin-top: 100px">
+          <li>
+            Name: <%= @category.name %>
+          </li>
+
+          <li>
+            Image: <%= image_tag @category.image, size: '100x100' %>
+          </li>
+
+          <li>
+            Created at:<%= @category.created_at %>
+          </li>
+          <li>
+            Update:<%= @category.updated_at %>
+          </li>
+        </ul>
+      <!--END CATEGORY INFO-->
+    </div>
+
+    <!--CATEGORY OTHER DETAIL-->
+    <div id="bs-same-categories-books"></div>
+    <!--END CATEGORY Other detail-->
+
+  </div>
+  <!--  END MAIN CONTENT  -->
+</div>
+<!-- END PAGE CONTENT -->

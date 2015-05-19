@@ -1,0 +1,60 @@
+<!--  PAGE HEADER  -->
+<div id="page-header">
+  <div class="container">
+    <ul id="main-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/">Books</a></li>
+      <li id="authors-nav-dropdown"><a href="#">Authors</a></li>
+      <li id="categories-nav-dropdown"><a href="#">Categories</a></li>
+      <li><a href="#">About us</a></li>
+      <li><a href="#">Contact us</a></li>
+    </ul>
+
+    <ul id="categories-nav">
+      <ul class="nav-list list-inline">
+        <% Category.all.each do |cat| %>
+            <li>
+              <%= link_to cat.name, controller: "categories", action: "show", id: cat.id %>
+            </li>
+        <% end %>
+      </ul>
+    </ul>
+
+    <ul id="authors-nav">
+      <ul class="nav-list list-inline container">
+        <% Author.all.each do |author| %>
+            <li>
+              <%= link_to author.name, controller: "authors", action: "show", id: author.id %>
+            </li>
+        <% end %>
+      </ul>
+    </ul>
+
+  </div>
+</div>
+
+<script>
+    $("#categories-nav-dropdown").click(function () {
+        if ($("#authors-nav").is(":visible")) {
+            $("#authors-nav").hide();
+            $("#categories-nav").fadeIn(350);
+        } else {
+            $("#categories-nav").slideToggle(350);
+        }
+
+        $("#categories-nav-dropdown a").toggleClass('active');
+        $("#authors-nav-dropdown a").removeClass('active');
+    });
+
+    $("#authors-nav-dropdown").click(function () {
+        if ($("#categories-nav").is(":visible")) {
+            $("#categories-nav").hide();
+            $("#authors-nav").fadeIn(350);
+        } else {
+            $("#authors-nav").slideToggle(350);
+        }
+
+        $("#authors-nav-dropdown a").toggleClass('active');
+        $("#categories-nav-dropdown a").removeClass('active');
+    });
+</script>

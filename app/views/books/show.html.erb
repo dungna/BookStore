@@ -1,0 +1,104 @@
+<!--
+
+<ul style="margin-top: 100px">
+  <li>
+    Name: <%= @book.name %>
+  </li>
+
+  <li>
+    Image: <%= image_tag @book.image, size: '100x100' %>
+  </li>
+
+  <li>
+    Authors:
+    <% @authors.each do |author| %>
+    <%= "#{author.name}, " %>
+<% end %>
+  </li>
+
+  <li>
+
+    Categories:
+    <% @categories.each do |category| %>
+    <%= "#{category.name}, " %>
+<% end %>
+
+  </li>
+</ul>
+
+-->
+
+<!--
+    ################
+    NOTE
+    ###############
+
+    You can use
+    @book: current viewing book
+
+    and below ruby code
+-->
+
+<%
+   authors = Author.where(id: @book.author_ids) # find all author who have id is in @book.author_ids
+   same_author_book_ids = (authors.map { |a| a.book_ids }).flatten.uniq
+   @same_author_book_ids = Book.where(id: same_author_book_ids) #query books which have id in same_author_book_ids
+   @same_category_books = Book.all #TODO: Add relations between books and categories as books and authors, Then change this line of code
+%>
+
+<!--  LANDING IMAGE  -->
+<div id="landing-img" class="container"></div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+
+  <!--  SIDE BAR  -->
+  <div class="sidebar">
+    <!-- Best sellers -->
+    <div class="box-title box-content">
+      Best Sellers
+    </div>
+
+    <div class="sidebar-list" id="lp-best-sellers">
+    </div>
+
+    <!-- Best sellers -->
+    <div class="box-title box-content">
+      Books of Author Name
+    </div>
+
+    <div class="sidebar-list" id="bs-same-author-books">
+    </div>
+  </div>
+
+  <!--  MAIN CONTENT  -->
+  <div id="landing-products">
+    <div class="box-title box-content">
+      Books
+    </div>
+
+    <div class="products-list">
+      <!--BOOK INFO-->
+      <div id="book-info"></div>
+      <!--END BOOK INFO-->
+    </div>
+
+    <!--BOOK OTHER DETAIL-->
+    <div class="box-title box-content">
+      Additional Information
+    </div>
+    <div id="book-other-detail"></div>
+    <!--END BOOK Other detail-->
+
+
+    <!-- Same category BOOKs -->
+    <div class="box-title box-content">
+      Related Books
+    </div>
+    <div id="bs-same-categories-books"></div>
+    <!--END BOOK Other detail-->
+
+  </div>
+  <!--  END MAIN CONTENT  -->
+</div>
+<!-- END PAGE CONTENT -->
